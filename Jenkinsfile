@@ -1,5 +1,5 @@
 pipeline{
-    agent none
+    agent any
     stages{
         stage("build"){
             agent {
@@ -16,7 +16,6 @@ pipeline{
         }
         
         stage("test"){
-            agent any
             when {
                 expression{
                     BRANCH_NAME == "develop"
