@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        SECRET_TEXT = credentials('suprise')
+    }
     stages{
         stage("build"){
             agent{
@@ -33,6 +36,18 @@ pipeline{
                 echo"deploying the text"
                 sh 'python --version'
             }
+        }
+        stage('userpass'){
+            environment{
+                USER_PASS = credentials('userpassword')
+            }
+            steps{
+                sh 'echo "username: $USER_PASS_USR"'
+               sh 'echo "password: $USER_PASS_PSW"'
+               sh 'echo "username_password: $USER_PASS"'
+
+            }
+
         }
     }
 }
