@@ -5,24 +5,16 @@ pipeline{
     }
     stages{
         stage("build"){
-            agent{
-                docker{
-                    image 'node'
-                }
-            }
-            steps {
-                echo " building the text"
-                sh 'node --version'
-            }
-        }
-        stage("test"){
-            when{
-                expression{
+            environment{
+                USER_PASS = credentials('userpassword')
                     BRANCH_NAME == "develop"
                 }
             }
             steps{
                 echo "testing the text"
+                sh 'echo "username: $USER_PASS_USR"'
+               sh 'echo "password: $USER_PASS_PSW"'
+               sh 'echo "username_password: $USER_PASS"'
             }
         }
         stage("deploy"){
@@ -37,17 +29,6 @@ pipeline{
                 sh 'python --version'
             }
         }
-        stage('userpass'){
-            environment{
-                USER_PASS = credentials('userpassword')
-            }
-            steps{
-                sh 'echo "username: $USER_PASS_USR"'
-               sh 'echo "password: $USER_PASS_PSW"'
-               sh 'echo "username_password: $USER_PASS"'
-
-            }
-
-        }
+        
     }
 }
