@@ -8,7 +8,6 @@ pipeline{
             environment{
                 USER_PASS = credentials('userpassword')
                     BRANCH_NAME == "develop"
-                }
             }
             steps{
                 echo "testing the text"
@@ -29,6 +28,5 @@ pipeline{
                 sh 'python --version'
             }
         }
-        
     }
 }
