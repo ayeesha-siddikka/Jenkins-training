@@ -10,7 +10,7 @@ pipeline{
         
         stage("test"){
             agent {
-                node any
+                node
             }
             
             when {
