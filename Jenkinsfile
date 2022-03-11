@@ -1,11 +1,12 @@
 pipeline{
-    agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11'
-        }
-    }
+    agent none
     stages{
         stage("build"){
+            agent {
+                docker {
+                    image 'maven:3.8.1-adoptopenjdk-11'
+                }
+            }
             steps{
                 echo("build start")
                 sh 'mvn --version'
@@ -15,6 +16,7 @@ pipeline{
         }
         
         stage("test"){
+            agent any
             when {
                 expression{
                     BRANCH_NAME == "develop"
