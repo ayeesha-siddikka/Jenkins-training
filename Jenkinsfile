@@ -1,34 +1,20 @@
 pipeline{
     agent any
-    environment{
-        SECRET_TEXT = credentials("mysecret")
-    }
-        
-
     stages{
-        stage("userpass"){
-
-            environment{
-                USER_PASS = credentials("userpass")
-            }
+        stage("build"){
             steps {
-               sh 'echo "username: $USER_PASS_USR"'
-               sh 'echo "password: $USER_PASS_PSW"'
-               sh 'echo "username_password: $USER_PASS"'
-            }
-            
-        }
-        stage("secret"){
-            steps{
-                sh 'echo "mysecret: $SECRET_TEXT"'
+                echo " building the text"
             }
         }
-         stage("all"){
+        stage("test"){
             steps{
-                sh "printenv"
+                echo "testing the text"
+            }
+        }
+        stage("deploy"){
+            steps{
+                echo"deploying the text"
             }
         }
     }
-
-   
 }
