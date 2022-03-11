@@ -9,14 +9,13 @@ pipeline{
         }
         
         stage("test"){
-            agent {
-                node
-            }
-            
             when {
                 expression{
                     BRANCH_NAME == "develop"
                 }
+            }
+            node {
+                echo("testing")
             }
             steps{
                 echo("testing")
