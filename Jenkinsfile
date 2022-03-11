@@ -1,37 +1,34 @@
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage("bulid") {
-            agent {
-                docker {
-                    image "python"
-                    reuseNode true
-                }
+    environment{
+        SECRET_TEXT = credentials("mysecret")
+    }
+        
+
+    stages{
+        stage("usepass"){
+
+            environment{
+                USER_PASS = credentials("userpass")
             }
             steps {
-                echo("building python")
-                sh "python --version"
-                echo("build completed")
+               sh 'echo "username: $USER_PASS_USR"'
+               sh 'echo "password: $USER_PASS_PWD"'
+               sh 'echo "username_password: $USER_PASS'
             }
+            
         }
-        stage("test"){
+        stage("secret"){
             steps{
-                echo("testing stage")
+                sh 'echo "mysecret: $SECRET_TEXT"'
             }
         }
-        stage("deploy"){
-            agent {
-                docker{
-                    image "python:3.9-bullseye"
-                    reuseNode true
-                }
+         stage("all"){
+            steps{
+                sh "printenv"
             }
-             steps {
-                echo("deploying python")
-                sh "python --version"
-                echo("deployed")
-            }
-
         }
     }
+
+   
 }
