@@ -15,11 +15,11 @@ pipeline{
                 }
             }
             node {
-                echo("testing")
+                steps{
+                    echo("testing")
+                }
             }
-            steps{
-                echo("testing")
-            }
+            
         }
 
     }
