@@ -6,7 +6,7 @@ pipeline{
         
 
     stages{
-        stage("usepass"){
+        stage("userpass"){
 
             environment{
                 USER_PASS = credentials("userpass")
@@ -14,7 +14,7 @@ pipeline{
             steps {
                sh 'echo "username: $USER_PASS_USR"'
                sh 'echo "password: $USER_PASS_PWD"'
-               sh 'echo "username_password: $USER_PASS'
+               sh 'echo "username_password: $USER_PASS"'
             }
             
         }
