@@ -9,6 +9,7 @@ pipeline{
         }
         
         stage("test"){
+            node any
             when {
                 expression{
                     BRANCH_NAME == "develop"
