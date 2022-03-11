@@ -5,7 +5,9 @@ pipeline{
             agent {
                 docker {
                     image 'maven:3.8.1-adoptopenjdk-11'
+                    reuseNode true
                 }
+                
             }
             steps{
                 echo("build start")
@@ -26,7 +28,12 @@ pipeline{
             }
         }
         stage('Example Test') {
-            agent { docker 'openjdk:8-jre' } 
+            agent { 
+                docker {
+                    image 'openjdk:8-jre'
+                    reuseNode true
+                }
+            }
             steps {
                 echo 'Hello, JDK'
                 sh 'java -version'
