@@ -9,11 +9,11 @@ pipeline{
         }
         
         stage("test"){
-            when {
-                expression{
-                    BRANCH_NAME == "develop"
-                }
-            }
+            // when {
+            //     expression{
+            //         BRANCH_NAME == "develop"
+            //     }
+            // }
             node {
                 steps{
                     echo("testing")
