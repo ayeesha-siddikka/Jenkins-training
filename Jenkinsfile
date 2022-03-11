@@ -13,7 +13,7 @@ pipeline{
             }
             steps {
                sh 'echo "username: $USER_PASS_USR"'
-               sh 'echo "password: $USER_PASS_PWD"'
+               sh 'echo "password: $USER_PASS_PSW"'
                sh 'echo "username_password: $USER_PASS"'
             }
             
